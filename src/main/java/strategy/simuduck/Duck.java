@@ -1,14 +1,29 @@
 package strategy.simuduck;
 
+import lombok.*;
+import strategy.simuduck.behaviour.fly.FlyBehaviour;
+import strategy.simuduck.behaviour.quack.QuackBehaviour;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public abstract class Duck {
 	
-	void quack() {
-		System.out.println("Quack...Quack...Quack...");
+	private FlyBehaviour flyBehaviour;
+	private QuackBehaviour quackBehaviour;
+	
+	public void quack() {
+		quackBehaviour.quack();
 	}
 	
-	void swim() {
+	public void swim() {
 		System.out.println("Swimming...");
 	}
 	
-	abstract void display();
+	public void fly() {
+		flyBehaviour.fly();
+	}
+	
+	public abstract void display();
 }
