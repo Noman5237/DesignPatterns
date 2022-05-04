@@ -43,5 +43,19 @@ public class SimUDuck {
 		System.out.println("Adding rocket powered flight capability to model duck");
 		modelDuck.setFlyBehaviour(new FlyRocketPowered());
 		modelDuck.fly();
+		
+		Duck customDuck = new Duck(() -> System.out.println("I am flying at sonic speed"),
+		                           () -> System.out.println("I am roaring like hulk")) {
+			@Override
+			public void display() {
+				System.out.println("I am a custom duck");
+			}
+		};
+		
+		System.out.println("=== Custom Duck ===");
+		customDuck.quack();
+		customDuck.swim();
+		customDuck.fly();
+		customDuck.display();
 	}
 }

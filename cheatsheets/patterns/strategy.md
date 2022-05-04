@@ -41,3 +41,8 @@ Strategy <|-[dashed]- StrategyB
 
 @enduml
 ```
+
+### Notes
+
+- A more modern approach of implementing the concrete strategies is to use predeclared anonymous functions or lambdas,
+  which behaves the same but without bloating code with extra classes.
