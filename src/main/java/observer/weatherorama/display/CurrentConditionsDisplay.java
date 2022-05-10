@@ -1,33 +1,29 @@
 package observer.weatherorama.display;
 
+import lombok.Setter;
 import observer.weatherorama.Observer;
-import observer.weatherorama.Subject;
+import observer.weatherorama.WeatherData;
 
 public class CurrentConditionsDisplay implements Observer, Display {
 	
 	private float temperature;
 	private float humidity;
-	private float pressure;
+	private final WeatherData weatherData;
 	
-	private final Subject weatherData;
-	
-	public CurrentConditionsDisplay(Subject weatherData) {
+	public CurrentConditionsDisplay(WeatherData weatherData) {
 		this.weatherData = weatherData;
 		weatherData.registerObserver(this);
 	}
 	
-	@Override
-	public void update(float temperature, float humidity, float pressure) {
-		this.temperature = temperature;
-		this.humidity = humidity;
-		this.pressure = pressure;
-		this.display();
+	public void update() {
+		this.temperature = weatherData.getTemperature();
+		this.humidity = weatherData.getHumidity();
+		
+		display();
 	}
 	
-	@Override
 	public void display() {
-		System.out.println("Current conditions:\n" +
-				                   "Temperature\tHumidity\tPressure\n" +
-				                   String.format("%.2f (C)\t%.2f\t%.2f", temperature, humidity, pressure));
+		System.out.println("Current conditions: " + temperature
+				                   + "F degrees and " + humidity + "% humidity");
 	}
 }
