@@ -1,6 +1,5 @@
 package observer.weatherorama.display;
 
-import lombok.Setter;
 import observer.weatherorama.Observer;
 import observer.weatherorama.WeatherData;
 

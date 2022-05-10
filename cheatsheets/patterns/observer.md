@@ -34,8 +34,8 @@ class ConcreteObserver {
 Subject -> Observer
 Subject <|-[dashed]- ConcreteSubject
 Observer <|-[dashed]- ConcreteObserver
-ConcreteSubject <- ConcreteObserver
-Observer "many" --o "1" ConcreteSubject : contains
+Observer "many" --o "1" ConcreteSubject : observers
+ConcreteSubject <-  ConcreteObserver : subject
 
 @enduml
 ```
@@ -47,5 +47,6 @@ Observer "many" --o "1" ConcreteSubject : contains
 > Why? Because if you need to change Observable/Observer implementations, the order of notification could change and your application would produce incorrect results. Now that’s definitely not what we’d consider loosely coupled.
 
 - JavaBeans have an implementation of the observer pattern with properties using
-  [*PropertyChangeSupport*](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/beans/PropertyChangeSupport.html)
+  [*
+  PropertyChangeSupport*](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/beans/PropertyChangeSupport.html)
   class.
