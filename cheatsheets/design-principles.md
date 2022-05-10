@@ -15,5 +15,9 @@ ___
 
 3. Favour composition over inheritance.
 
-> - It lets you encapsulate a family of algorithms into their own set of classes and also lets you change behaviour at
-  runtime.
+> - It lets you encapsulate a family of algorithms into their own set of classes and also lets you change behaviour at runtime.
+
+4. Strive for loosely coupled designs between the objects that interact.
+
+> - Loosely coupled designs allow us to build flexible OO systems that can handle change because they minimize the
+  interdependency between the objects.
