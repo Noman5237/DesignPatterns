@@ -19,5 +19,8 @@ ___
 
 4. Strive for loosely coupled designs between the objects that interact.
 
-> - Loosely coupled designs allow us to build flexible OO systems that can handle change because they minimize the
-  interdependency between the objects.
+> - Loosely coupled designs allow us to build flexible OO systems that can handle change because they minimize the interdependency between the objects.
+
+5. Classes should be open for extension, but closed for modification.
+
+> - By dynamically composing objects, functionality can be added by writing new code rather than altering existing code which reduces the chances of introducing bugs or untended side effects.

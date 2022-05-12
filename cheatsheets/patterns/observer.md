@@ -21,19 +21,17 @@ interface Observer {
   + update()
 }
 
-class ConcreteSubject {
+class ConcreteSubject implements Subject {
   - state
   + getState()
   + setState()
 }
 
-class ConcreteObserver {
+class ConcreteObserver implements Observer {
   + update()
 }
 
 Subject -> Observer
-Subject <|-[dashed]- ConcreteSubject
-Observer <|-[dashed]- ConcreteObserver
 Observer "many" --o "1" ConcreteSubject : observers
 ConcreteSubject <-  ConcreteObserver : subject
 

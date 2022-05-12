@@ -28,16 +28,13 @@ interface Strategy {
 Context *-up-> Strategy
 
 package ConcreteStrategies {
-    class StrategyA {
+    class StrategyA implements Strategy {
         +execute()    
     }
-    class StrategyB {
+    class StrategyB implements Strategy {
         +execute()    
     }
 }
-
-Strategy <|-[dashed]- StrategyA
-Strategy <|-[dashed]- StrategyB
 
 @enduml
 ```
