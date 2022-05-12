@@ -9,6 +9,7 @@ public abstract class Condiment extends Beverage {
 	private final Beverage beverage;
 	
 	protected Condiment(Beverage beverage) {
+		super(beverage.getSize());
 		this.beverage = beverage;
 	}
 }

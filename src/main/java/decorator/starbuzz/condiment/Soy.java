@@ -16,7 +16,21 @@ public class Soy extends Condiment {
 	
 	@Override
 	public double getCost() {
-		return this.getBeverage()
-		           .getCost() + .15;
+		Beverage beverage = this.getBeverage();
+		double cost = beverage.getCost();
+		
+		switch (beverage.getSize()) {
+			case SMALL:
+				cost += .10;
+				break;
+			case MEDIUM:
+				cost += .15;
+				break;
+			case LARGE:
+				cost += .20;
+				break;
+		}
+		
+		return cost;
 	}
 }

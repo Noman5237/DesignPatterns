@@ -16,7 +16,21 @@ public class Whip extends Condiment {
 	
 	@Override
 	public double getCost() {
-		return this.getBeverage()
-		           .getCost() + .10;
+		Beverage beverage = this.getBeverage();
+		double cost = beverage.getCost();
+		
+		switch (beverage.getSize()) {
+			case SMALL:
+				cost += .08;
+				break;
+			case MEDIUM:
+				cost += .11;
+				break;
+			case LARGE:
+				cost += .16;
+				break;
+		}
+		
+		return cost;
 	}
 }

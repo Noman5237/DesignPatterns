@@ -16,7 +16,21 @@ public class SteamedMilk extends Condiment {
 	
 	@Override
 	public double getCost() {
-		return this.getBeverage()
-		           .getCost() + .10;
+		Beverage beverage = this.getBeverage();
+		double cost = beverage.getCost();
+		
+		switch (beverage.getSize()) {
+			case SMALL:
+				cost += .05;
+				break;
+			case MEDIUM:
+				cost += .10;
+				break;
+			case LARGE:
+				cost += .15;
+				break;
+		}
+		
+		return cost;
 	}
 }
