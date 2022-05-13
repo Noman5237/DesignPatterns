@@ -11,6 +11,7 @@ dependents are notified and updated automatically.
 
 ```puml
 @startuml
+
 interface Subject {
   + registerObserver(observer)
   + removeObserver(observer)

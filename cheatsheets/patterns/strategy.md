@@ -11,6 +11,7 @@ lets the algorithm vary independently of clients that use it.
 
 ```puml
 @startuml
+
 class Client 
 
 class Context {

@@ -10,6 +10,8 @@ functionality dynamically.
 ### Structure
 
 ```puml
+@startuml
+
 abstract class Component {
     + state
     + methodA()
@@ -40,6 +42,7 @@ class ConcreteDecoratorB extends Decorator {
     + methodE()
 }
 
+@enduml
 ```
 
 ### Notes
