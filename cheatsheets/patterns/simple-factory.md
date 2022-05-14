@@ -17,11 +17,7 @@ class ProductA extends Product {}
 
 class ProductB extends Product {}
 
-interface SimpleFactory {
-    createProduct()
-}
-
-class ConcreteSimpleFactory implements SimpleFactory {
+class SimpleFactory {
     createProduct()
 }
 
@@ -36,3 +32,4 @@ SimpleFactory -> Product
 ### Notes
 
 - It doesn't totally get rid of modification but minimizes and encapsulates it in a single place.
+- Very similar to Factory Method Pattern but without factory as an interface.

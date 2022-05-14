@@ -1,22 +1,22 @@
 package factory.pizzastore.store;
 
-import factory.pizzastore.factory.NYPizzaIngredientFactory;
+import factory.pizzastore.factory.CAPizzaIngredientFactory;
 import factory.pizzastore.factory.PizzaIngredientFactory;
-import factory.pizzastore.franchise.NYFranchise;
+import factory.pizzastore.franchise.CAFranchise;
 import factory.pizzastore.pizza.Pizza;
 import factory.pizzastore.pizza.Pizzas;
 
-public class NYStylePizzaStore extends PizzaStore {
+public class CAStylePizzaStore extends PizzaStore {
 	
 	private final PizzaIngredientFactory pizzaIngredientFactory;
 	
-	public NYStylePizzaStore() {
-		pizzaIngredientFactory = new NYPizzaIngredientFactory();
+	public CAStylePizzaStore() {
+		pizzaIngredientFactory = new CAPizzaIngredientFactory();
 	}
 	
 	@Override
 	protected Pizza createPizza(String type) {
 		Pizza pizza = Pizzas.createPizza(type, pizzaIngredientFactory);
-		return new NYFranchise(pizza);
+		return new CAFranchise(pizza);
 	}
 }

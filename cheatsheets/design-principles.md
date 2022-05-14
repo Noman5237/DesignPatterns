@@ -24,3 +24,9 @@ ___
 5. Classes should be open for extension, but closed for modification.
 
 > - By dynamically composing objects, functionality can be added by writing new code rather than altering existing code which reduces the chances of introducing bugs or untended side effects.
+
+6. Depend upon abstractions. Do not depend upon concrete classes.
+
+> - High level components should not depend on low level components; rather, they should both depend upon abstractions.
+> - Avoid creating different type of instances and use a factory method to create them for you.
+> - Try not to derive from a concrete class or override implemented methods of parent class.
