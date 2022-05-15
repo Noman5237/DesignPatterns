@@ -49,3 +49,4 @@ class ConcreteDecoratorB extends Decorator {
 
 - Decorator subclasses component to inherit its type not behaviours.
 - The behaviours' comes in through composition of decorators with the base components as well as other components.
+- Decorators reduce the class explosion from O(mn) to O(m+n).
