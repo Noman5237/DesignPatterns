@@ -22,8 +22,8 @@ class ConcreteProductB1 extends ProductB {}
 class ConcreteProductB2 extends ProductB {}
 
 interface AbstractFactory {
-    + createProductA()
-    + createProductB()
+    + {abstract} createProductA()
+    + {abstract} createProductB()
 }
 
 class ConcreteFactory1 implements AbstractFactory {

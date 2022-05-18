@@ -14,7 +14,7 @@ functionality dynamically.
 
 abstract class Component {
     + state
-    + methodA()
+    + {abstract} methodA()
 }
 
 class ConcreteComponent extends Component {
