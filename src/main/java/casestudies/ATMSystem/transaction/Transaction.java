@@ -1,6 +1,6 @@
-package ATMSystem.transaction;
+package casestudies.ATMSystem.transaction;
 
-import ATMSystem.bank.Account;
+import casestudies.ATMSystem.bank.Account;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

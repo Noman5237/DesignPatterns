@@ -1,16 +1,19 @@
-package ATMSystem;
+package casestudies.ATMSystem;
 
-import ATMSystem.bank.Account;
-import ATMSystem.bank.Database;
-import ATMSystem.transaction.BalanceInquiry;
-import ATMSystem.transaction.Deposit;
-import ATMSystem.transaction.Transaction;
-import ATMSystem.transaction.Withdrawal;
+import casestudies.ATMSystem.bank.Account;
+import casestudies.ATMSystem.bank.Database;
+import casestudies.ATMSystem.transaction.BalanceInquiry;
+import casestudies.ATMSystem.transaction.Deposit;
+import casestudies.ATMSystem.transaction.Transaction;
+import casestudies.ATMSystem.transaction.Withdrawal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import util.cli.AbortException;
 import util.cli.Input;
 import util.cli.Menu;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ATM {
 	
@@ -50,7 +53,9 @@ public class ATM {
 	}
 	
 	private void showMenu(Account account) {
-		while (true) {
+		
+		AtomicBoolean done = new AtomicBoolean(false);
+		while (!done.get()) {
 			
 			try {
 				Menu.builder()
@@ -75,7 +80,7 @@ public class ATM {
 				                       .help("Exit the ATM")
 				                       .onSelect(() -> {
 					                       System.out.println("Thank you for using the ATM. Have a nice day!");
-					                       throw new AbortException();
+					                       done.set(true);
 				                       })
 				                       .build())
 				    .build()

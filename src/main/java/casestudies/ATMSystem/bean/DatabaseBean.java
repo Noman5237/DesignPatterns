@@ -1,7 +1,7 @@
-package ATMSystem.bean;
+package casestudies.ATMSystem.bean;
 
-import ATMSystem.bank.Account;
-import ATMSystem.bank.Database;
+import casestudies.ATMSystem.bank.Account;
+import casestudies.ATMSystem.bank.Database;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

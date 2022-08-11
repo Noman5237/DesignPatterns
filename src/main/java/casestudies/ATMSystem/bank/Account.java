@@ -1,4 +1,4 @@
-package ATMSystem.bank;
+package casestudies.ATMSystem.bank;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

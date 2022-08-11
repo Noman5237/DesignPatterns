@@ -1,4 +1,4 @@
-package ATMSystem.bank;
+package casestudies.ATMSystem.bank;
 
 import java.util.HashMap;
 import java.util.Map;
