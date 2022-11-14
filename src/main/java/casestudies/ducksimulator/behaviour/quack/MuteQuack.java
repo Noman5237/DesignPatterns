@@ -1,11 +1,9 @@
 package casestudies.ducksimulator.behaviour.quack;
 
-import strategy.simuduck.behaviour.quack.QuackBehaviour;
-
 public class MuteQuack implements QuackBehaviour {
 	
 	@Override
-	public void quack() {
+	public void act() {
 		System.out.println("(Mute)");
 	}
 }

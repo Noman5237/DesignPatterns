@@ -1,7 +1,9 @@
 package casestudies.ducksimulator.behaviour.quack;
 
+import casestudies.ducksimulator.behaviour.Behaviour;
+
 @FunctionalInterface
-public interface QuackBehaviour {
+public interface QuackBehaviour extends Behaviour {
 	
-	void quack();
+	void act();
 }

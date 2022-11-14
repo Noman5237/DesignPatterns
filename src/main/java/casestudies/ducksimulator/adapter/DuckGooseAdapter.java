@@ -1,11 +1,10 @@
 package casestudies.ducksimulator.adapter;
 
-import casestudies.ducksimulator.behaviour.honk.HonkBehaviour;
+import casestudies.ducksimulator.behaviour.Behaviour;
 import casestudies.ducksimulator.duck.Duck;
 import casestudies.ducksimulator.goose.Goose;
-import strategy.simuduck.behaviour.quack.QuackBehaviour;
 
-class DuckGooseAdapter extends Duck {
+public class DuckGooseAdapter extends Duck {
 	
 	private final Goose goose;
 	
@@ -23,12 +22,13 @@ class DuckGooseAdapter extends Duck {
 		goose.display();
 	}
 	
-	public void setQuackBehaviour(HonkBehaviour honkBehaviour) {
-		goose.setHonkBehaviour(honkBehaviour);
+	@Override
+	public Behaviour getQuackBehaviour() {
+		return goose.getHonkBehaviour();
 	}
 	
-	public QuackBehaviour getQuackBehaviour() {
-		return this::quack;
+	@Override
+	public void setQuackBehaviour(Behaviour quackBehaviour) {
+		goose.setHonkBehaviour(quackBehaviour);
 	}
-	
 }

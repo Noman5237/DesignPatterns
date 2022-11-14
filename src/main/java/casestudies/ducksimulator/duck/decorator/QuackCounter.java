@@ -1,21 +1,31 @@
 package casestudies.ducksimulator.duck.decorator;
 
 import casestudies.ducksimulator.duck.Duck;
+import casestudies.ducksimulator.util.Counter;
+
+import java.util.Hashtable;
 
 public class QuackCounter extends Duck {
 	
-	private static int numberOfQuacks;
+	private static final Hashtable<Duck, Counter> quackCounters;
 	
 	private final Duck duck;
+	private final Counter quackCounter;
+	
+	static {
+		quackCounters = new Hashtable<>();
+	}
 	
 	public QuackCounter(Duck duck) {
 		this.duck = duck;
+		this.quackCounter = new Counter();
+		quackCounters.put(this, this.quackCounter);
 	}
 	
 	@Override
 	public void quack() {
 		duck.quack();
-		numberOfQuacks++;
+		quackCounter.increment();
 	}
 	
 	@Override
@@ -23,8 +33,9 @@ public class QuackCounter extends Duck {
 		duck.display();
 	}
 	
-	public int getNumberOfQuacks() {
-		return numberOfQuacks;
+	public static int getNumberOfQuacks(Duck duck) {
+		return quackCounters.get(duck)
+		                    .getCount();
 	}
 	
 }
