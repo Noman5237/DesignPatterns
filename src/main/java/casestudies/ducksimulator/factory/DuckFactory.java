@@ -4,6 +4,6 @@ import casestudies.ducksimulator.duck.Duck;
 
 public interface DuckFactory {
 	
-	Duck createDuck(Object... params);
+	Duck createDuck(Class<? extends Duck> duckClass, Object... params);
 	
 }

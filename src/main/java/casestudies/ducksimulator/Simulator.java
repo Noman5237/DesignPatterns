@@ -9,9 +9,7 @@ import casestudies.ducksimulator.duck.Duck;
 import casestudies.ducksimulator.duck.MallardDuck;
 import casestudies.ducksimulator.duck.RubberDuck;
 import casestudies.ducksimulator.duck.decorator.QuackCounter;
-import casestudies.ducksimulator.factory.CountingDuckFactory;
 import casestudies.ducksimulator.factory.DuckFactory;
-import casestudies.ducksimulator.factory.DuckFactoryCreator;
 import casestudies.ducksimulator.factory.SimpleDuckFactory;
 import casestudies.ducksimulator.goose.Greylag;
 import casestudies.ducksimulator.duck.ReadHeadDuck;
@@ -53,13 +51,12 @@ public class Simulator {
 		
 		System.out.println(" ================================ Task 4 ==================================== ");
 		
-		DuckFactory simpleDuckFactory = DuckFactoryCreator.createDuckFactory(SimpleDuckFactory.class);
+		DuckFactory simpleDuckFactory = new SimpleDuckFactory();
 		Duck redHeadDuck = simpleDuckFactory.createDuck(ReadHeadDuck.class);
 		redHeadDuck.display();
 		redHeadDuck.quack();
 		
-		DuckFactory countingDuckFactory = DuckFactoryCreator.createDuckFactory(CountingDuckFactory.class);
-		Duck countingRedHeadDuck = countingDuckFactory.createDuck(redHeadDuck);
+		Duck countingRedHeadDuck = simpleDuckFactory.createDuck(QuackCounter.class, redHeadDuck);
 		countingRedHeadDuck.display();
 		countingRedHeadDuck.quack();
 		countingRedHeadDuck.quack();
@@ -71,7 +68,7 @@ public class Simulator {
 		
 		Flock<Duck> flock = new Flock<>();
 		flock.add(redHeadDuck);
-		flock.add(countingRedHeadDuck);
+//		flock.add(countingRedHeadDuck);
 		flock.add(rubberDuck);
 		flock.add(mallardDuck);
 		flock.add(greylagDuck);

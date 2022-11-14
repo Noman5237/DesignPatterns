@@ -2,33 +2,36 @@ package casestudies.ducksimulator.factory;
 
 import casestudies.ducksimulator.duck.Duck;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 public class SimpleDuckFactory implements DuckFactory {
 	
 	@Override
-	public Duck createDuck(Object... params) {
+	public Duck createDuck(Class<? extends Duck> duckClass, Object... params) {
 		
-		if (params.length < 1) {
-			throw new IllegalArgumentException("provide duck class to create duck");
-		}
-		
-		Class<? extends Duck> duckClass;
+		Class<?>[] parameterTypes = Arrays.stream(params)
+		                                  .map(Object::getClass)
+		                                  .toArray(Class[]::new);
+		var constructors = duckClass.getConstructors();
 		try {
-			
-			duckClass = (Class<? extends Duck>) params[0];
-			
-		} catch (ClassCastException exception) {
-			throw new IllegalArgumentException("only ducks can be created", exception);
-		}
-		
-		try {
-			return duckClass.getDeclaredConstructor()
-			                .newInstance();
-		} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+			Constructor<?> requiredConstructor = Arrays.stream(constructors)
+			                                           .filter(constructor -> constructor.getParameterCount() == params.length)
+			                                           .filter(constructor -> {
+				                                           var cParameterTypes = constructor.getParameterTypes();
+				                                           for (int i = 0; i < cParameterTypes.length; i++) {
+					                                           if (!cParameterTypes[i].isAssignableFrom(parameterTypes[i])) {
+						                                           return false;
+					                                           }
+				                                           }
+				                                           return true;
+			                                           })
+			                                           .findFirst()
+			                                           .orElseThrow();
+			return (Duck) requiredConstructor.newInstance(params);
+		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
 			throw new IllegalArgumentException("only simple duck creation supported", e);
 		}
 	}
-	
-	
 }
