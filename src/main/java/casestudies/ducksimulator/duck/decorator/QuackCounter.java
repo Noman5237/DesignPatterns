@@ -34,8 +34,11 @@ public class QuackCounter extends Duck {
 	}
 	
 	public static int getNumberOfQuacks(Duck duck) {
-		return quackCounters.get(duck)
-		                    .getCount();
+		try {
+			return quackCounters.get(duck)
+			                    .getCount();
+		} catch (NullPointerException exception) {
+			throw new IllegalArgumentException("duck is not being tracked", exception);
+		}
 	}
-	
 }

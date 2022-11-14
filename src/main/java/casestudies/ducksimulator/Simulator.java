@@ -26,8 +26,9 @@ public class Simulator {
 		System.out.println(" ================================ Task 1 ==================================== ");
 		
 		MallardDuck mallardDuck = new MallardDuck();
-		mallardDuck.setQuackBehaviour(new MuteQuack());
 		mallardDuck.display();
+		mallardDuck.quack();
+		mallardDuck.setQuackBehaviour(new MuteQuack());
 		mallardDuck.quack();
 		
 		System.out.println(" ================================ Task 2 ==================================== ");
