@@ -1,9 +1,7 @@
 package casestudies.ducksimulator.behaviour.honk;
 
-import casestudies.ducksimulator.behaviour.Behaviour;
-
 @FunctionalInterface
-public interface HonkBehaviour extends Behaviour {
+public interface HonkBehaviour {
 	
 	void act();
 	

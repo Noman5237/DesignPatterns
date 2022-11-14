@@ -1,6 +1,7 @@
 package casestudies.ducksimulator;
 
 import casestudies.ducksimulator.adapter.DuckGooseAdapter;
+import casestudies.ducksimulator.adapter.QuackHonkAdapter;
 import casestudies.ducksimulator.behaviour.honk.Hiss;
 import casestudies.ducksimulator.behaviour.quack.MuteQuack;
 import casestudies.ducksimulator.composite.Flock;
@@ -37,7 +38,7 @@ public class Simulator {
 		Duck greylagDuck = new DuckGooseAdapter(greylag);
 		greylagDuck.display();
 		greylagDuck.quack();
-		greylagDuck.setQuackBehaviour(new Hiss());
+		greylagDuck.setQuackBehaviour(new QuackHonkAdapter(new Hiss()));
 		greylagDuck.quack();
 		
 		System.out.println(" ================================ Task 3 ==================================== ");

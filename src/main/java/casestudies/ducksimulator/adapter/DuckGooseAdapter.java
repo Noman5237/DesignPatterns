@@ -1,6 +1,6 @@
 package casestudies.ducksimulator.adapter;
 
-import casestudies.ducksimulator.behaviour.Behaviour;
+import casestudies.ducksimulator.behaviour.quack.QuackBehaviour;
 import casestudies.ducksimulator.duck.Duck;
 import casestudies.ducksimulator.goose.Goose;
 
@@ -23,12 +23,17 @@ public class DuckGooseAdapter extends Duck {
 	}
 	
 	@Override
-	public Behaviour getQuackBehaviour() {
-		return goose.getHonkBehaviour();
+	public QuackBehaviour getQuackBehaviour() {
+		return new QuackHonkAdapter(goose.getHonkBehaviour());
 	}
 	
 	@Override
-	public void setQuackBehaviour(Behaviour quackBehaviour) {
-		goose.setHonkBehaviour(quackBehaviour);
+	public void setQuackBehaviour(QuackBehaviour quackBehaviour) {
+		try {
+			QuackHonkAdapter quackHonkAdapter = (QuackHonkAdapter) quackBehaviour;
+			goose.setHonkBehaviour(quackHonkAdapter.getHonkBehaviour());
+		} catch (ClassCastException exception) {
+			throw new IllegalArgumentException("goose can only honk", exception);
+		}
 	}
 }
