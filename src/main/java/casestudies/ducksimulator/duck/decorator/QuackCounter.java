@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 public class QuackCounter extends Duck {
 	
-	private static final Hashtable<Duck, Counter> quackCounters;
+	private static final Hashtable<Integer, Counter> quackCounters;
 	
 	private final Duck duck;
 	private final Counter quackCounter;
@@ -19,7 +19,7 @@ public class QuackCounter extends Duck {
 	public QuackCounter(Duck duck) {
 		this.duck = duck;
 		this.quackCounter = new Counter();
-		quackCounters.put(this, this.quackCounter);
+		quackCounters.put(this.hashCode(), this.quackCounter);
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class QuackCounter extends Duck {
 	
 	public static int getNumberOfQuacks(Duck duck) {
 		try {
-			return quackCounters.get(duck)
+			return quackCounters.get(duck.hashCode())
 			                    .getCount();
 		} catch (NullPointerException exception) {
 			throw new IllegalArgumentException("duck is not being tracked", exception);
