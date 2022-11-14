@@ -4,7 +4,7 @@ import casestudies.ducksimulator.adapter.DuckGooseAdapter;
 import casestudies.ducksimulator.adapter.QuackHonkAdapter;
 import casestudies.ducksimulator.behaviour.honk.Hiss;
 import casestudies.ducksimulator.behaviour.quack.MuteQuack;
-import casestudies.ducksimulator.composite.Flock;
+import casestudies.ducksimulator.composite.Composite;
 import casestudies.ducksimulator.duck.Duck;
 import casestudies.ducksimulator.duck.MallardDuck;
 import casestudies.ducksimulator.duck.RubberDuck;
@@ -66,39 +66,42 @@ public class Simulator {
 		
 		System.out.println(" ================================ Task 5 ==================================== ");
 		
-		Flock<Duck> flock = new Flock<>();
+		Composite<Duck> flock = new Composite<>();
 		flock.add(redHeadDuck);
-//		flock.add(countingRedHeadDuck);
+		flock.add(countingRedHeadDuck);
 		flock.add(rubberDuck);
 		flock.add(mallardDuck);
 		flock.add(greylagDuck);
 		
-		flock.doTask(Duck::display);
-		flock.doTask(Duck::quack);
+		flock.accept(Duck::display);
+		flock.accept(Duck::quack);
+		
+		int noOfDucks = flock.getObjects()
+		                     .reduce(0, (count, duck) -> count + 1, Integer::sum);
+		System.out.println("No of ducks: " + noOfDucks);
 		
 		System.out.println(" ================================ Task 6 ==================================== ");
 		
 		Subject<Duck> redHeadDuckSubject = new Subject<>(redHeadDuck,
 		                                                 DuckEvents.QUACK);
-		var quackCounterObserver = redHeadDuckSubject.add(new Observer() {
-			int count = 0;
-			
-			@Override
-			public void update(Enum<?> event) {
-				System.out.println("Observer 1: " + event.name());
-				count++;
-				System.out.println("No of quacks: " + count);
-			}
-		}, DuckEvents.QUACK);
+		final int[] count = {0};
+		var quackCounterObserver = redHeadDuckSubject.add(
+				event -> {
+					count[0]++;
+					System.out.println("Observer 1: " + count[0]);
+				}, DuckEvents.QUACK);
 		
-		redHeadDuckSubject.add((event) -> System.out.println("Observer 2: " + event.name()), DuckEvents.QUACK);
+		redHeadDuckSubject.add(
+				(event) -> System.out.println("Observer 2: " + event.name()),
+				DuckEvents.QUACK);
 		
 		redHeadDuckSubject.call(Duck::quack, DuckEvents.QUACK);
 		redHeadDuckSubject.call(Duck::quack, DuckEvents.QUACK);
 		
 		redHeadDuckSubject.remove(quackCounterObserver, DuckEvents.QUACK);
 		
-		redHeadDuckSubject.call(Duck::quack, DuckEvents.QUACK);
+		redHeadDuckSubject.call(duck -> System.out.println("Manual Quack"),
+		                        DuckEvents.QUACK);
 		redHeadDuckSubject.call(Duck::display);
 	}
 	

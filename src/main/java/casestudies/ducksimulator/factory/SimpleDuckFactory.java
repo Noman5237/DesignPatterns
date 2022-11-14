@@ -5,6 +5,7 @@ import casestudies.ducksimulator.duck.Duck;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class SimpleDuckFactory implements DuckFactory {
 	
@@ -30,7 +31,7 @@ public class SimpleDuckFactory implements DuckFactory {
 			                                           .findFirst()
 			                                           .orElseThrow();
 			return (Duck) requiredConstructor.newInstance(params);
-		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+		} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchElementException e) {
 			throw new IllegalArgumentException("only simple duck creation supported", e);
 		}
 	}
