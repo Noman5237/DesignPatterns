@@ -1,5 +1,7 @@
 package casestudies.ducksimulator.observer;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,6 +10,7 @@ import java.util.function.Consumer;
 
 public class Subject <T> {
 	
+	@Getter
 	private final T subject;
 	private final HashMap<Enum<?>, List<Observer>> observers;
 	

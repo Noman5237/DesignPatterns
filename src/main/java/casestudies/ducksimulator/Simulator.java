@@ -13,7 +13,6 @@ import casestudies.ducksimulator.factory.DuckFactory;
 import casestudies.ducksimulator.factory.SimpleDuckFactory;
 import casestudies.ducksimulator.goose.Greylag;
 import casestudies.ducksimulator.duck.ReadHeadDuck;
-import casestudies.ducksimulator.observer.Observer;
 import casestudies.ducksimulator.observer.Subject;
 
 public class Simulator {
