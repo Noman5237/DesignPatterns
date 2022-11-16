@@ -75,6 +75,10 @@ public class Simulator {
 		
 		flock.accept(Duck::display);
 		flock.accept(Duck::quack);
+		flock.accept(duck -> duck.setQuackBehaviour(
+				new QuackHonkAdapter(new MuteQuack())));
+		System.out.println("Quacks Muted");
+		flock.accept(Duck::quack);
 		
 		int noOfDucks = flock.getObjects()
 		                     .reduce(0, (count, duck) -> count + 1, Integer::sum);

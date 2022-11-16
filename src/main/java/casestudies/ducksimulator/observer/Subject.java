@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class Subject <T> {
 	
 	private final T subject;
-	private final HashMap<Enum, List<Observer>> observers;
+	private final HashMap<Enum<?>, List<Observer>> observers;
 	
 	public Subject(T subject, Enum<?>... events) {
 		this.subject = subject;

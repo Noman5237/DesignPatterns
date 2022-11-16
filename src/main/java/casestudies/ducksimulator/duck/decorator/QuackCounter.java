@@ -1,5 +1,6 @@
 package casestudies.ducksimulator.duck.decorator;
 
+import casestudies.ducksimulator.behaviour.quack.QuackBehaviour;
 import casestudies.ducksimulator.duck.Duck;
 import casestudies.ducksimulator.util.Counter;
 
@@ -40,5 +41,15 @@ public class QuackCounter extends Duck {
 		} catch (NullPointerException exception) {
 			throw new IllegalArgumentException("duck is not being tracked", exception);
 		}
+	}
+	
+	@Override
+	public QuackBehaviour getQuackBehaviour() {
+		return duck.getQuackBehaviour();
+	}
+	
+	@Override
+	public void setQuackBehaviour(QuackBehaviour quackBehaviour) {
+		duck.setQuackBehaviour(quackBehaviour);
 	}
 }
