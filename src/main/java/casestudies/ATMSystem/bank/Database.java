@@ -12,20 +12,36 @@ public class Database {
 		this.accounts = new HashMap<>();
 	}
 	
-	public Optional<Account> getAuthenticatedUser(String accountNumber, int pin) {
-		Account account = this.accounts.get(accountNumber);
+	private Optional<Account> getAccount(String accountNo) {
+		Account account = this.accounts.get(accountNo);
 		
 		if (account == null) {
 			return Optional.empty();
 		}
-		if (account.validatePin(pin)) {
-			return Optional.of(account);
-		}
 		
-		return Optional.empty();
+		return Optional.of(account);
 	}
+	
+	public boolean authenticateUser(String accountNo, int pin) {
+		return this.getAccount(accountNo)
+		           .map(account -> account.validatePin(pin))
+		           .orElse(false);
+	}
+	
+	public void credit(String accountNo, int amount) {
+		this.getAccount(accountNo)
+		    .ifPresent(account -> account.credit(amount));
+	}
+	
+	public void debit(String accountNo, int amount) {
+		this.getAccount(accountNo)
+		    .ifPresent(account -> account.debit(amount));
+	}
+	
+	/* ================================ UTILITY ==================================== */
 	
 	public void addAccount(Account account) {
 		this.accounts.put(account.getAccountNumber(), account);
 	}
+	
 }

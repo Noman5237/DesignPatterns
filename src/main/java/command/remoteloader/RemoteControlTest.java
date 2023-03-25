@@ -18,6 +18,8 @@ import command.remoteloader.receiver.Stereo;
 public class RemoteControlTest {
 	
 	public static void main(String[] args) {
+//		TODO: Undo, Store, Load, Logging, Transactions
+		
 		RemoteControl remoteControl = new RemoteControl(8);
 		
 		Light livingRoomLight = new Light("Living Room");

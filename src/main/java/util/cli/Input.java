@@ -1,7 +1,11 @@
 package util.cli;
 
 import lombok.Builder;
+import lombok.Getter;
 import org.javatuples.Pair;
+import util.cli.io.InputSource;
+import util.cli.io.OutputSource;
+import util.cli.io.SystemConsole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,8 @@ public class Input <T> {
 	private final Function<String, T> cast;
 	private final Consumer<Pair<String, ? extends Exception>> onError;
 	private final List<Pair<Predicate<T>, Consumer<T>>> conditions;
+	private InputSource inputSource = SystemConsole.getInputSource();
+	private OutputSource outputSource = SystemConsole.getOutputSource();
 	
 	@Builder.Default
 	private int maxAttempts = -1;
@@ -39,15 +45,14 @@ public class Input <T> {
 	}
 	
 	public T get() throws AbortException {
-		Scanner scanner = new Scanner(System.in);
 		String input = null;
 		do {
 			try {
 				System.out.print(prompt);
-				input = scanner.nextLine();
+				input = inputSource.nextLine();
 				if (input.equals("/help")) {
 					maxAttempts++;
-					System.out.println(help);
+					outputSource.println(help);
 				} else if (input.equals("/quit")) {
 					throw new AbortException();
 				} else if (input.isEmpty() && defaultValue != null) {

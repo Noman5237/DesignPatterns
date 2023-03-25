@@ -47,7 +47,7 @@ ConcreteFactory1 -up-> ConcreteProductB1
 ConcreteFactory2 -up-> ConcreteProductA2
 ConcreteFactory2 -up-> ConcreteProductB2
 
-Client o-[dashed]> AbstractFactory : factory
+Client o-> AbstractFactory : factory
 
 @enduml
 ```

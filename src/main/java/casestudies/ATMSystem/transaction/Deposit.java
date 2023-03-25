@@ -1,19 +1,20 @@
 package casestudies.ATMSystem.transaction;
 
 import casestudies.ATMSystem.bank.Account;
+import casestudies.ATMSystem.bank.Database;
 
 public class Deposit extends Transaction {
 	
 	private final int amount;
 	
-	public Deposit(Account account, int amount) {
-		super(account);
+	public Deposit(Database database, String account, int amount) {
+		super(database, account);
 		this.amount = amount;
 	}
 	
 	@Override
 	public void execute() {
-		this.getAccount()
-		    .credit(amount);
+		this.getDatabase()
+		    .credit(this.getAccountNo(), amount);
 	}
 }

@@ -1,18 +1,15 @@
 package casestudies.ATMSystem.transaction;
 
-import casestudies.ATMSystem.bank.Account;
+import casestudies.ATMSystem.bank.Database;
 
 public class BalanceInquiry extends Transaction {
 	
-	public BalanceInquiry(Account account) {
-		super(account);
+	public BalanceInquiry(Database database, String accountNo) {
+		super(database, accountNo);
 	}
 	
 	@Override
 	public void execute() {
-		System.out.println("Total Balance: " + this.getAccount()
-		                                           .getTotalBalance());
-		System.out.println("Available Balance: " + this.getAccount()
-		                                               .getAvailableBalance());
+	
 	}
 }

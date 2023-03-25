@@ -1,14 +1,15 @@
 package casestudies.ATMSystem.transaction;
 
-import casestudies.ATMSystem.bank.Account;
+import casestudies.ATMSystem.bank.Database;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public abstract class Transaction {
 	
-	@Getter
-	private Account account;
+	private Database database;
+	private String accountNo;
 	
 	public abstract void execute();
 	

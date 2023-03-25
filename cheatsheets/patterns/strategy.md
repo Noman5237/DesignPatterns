@@ -20,13 +20,13 @@ class Context {
     + doSomething()
 }
 
-Client o--> "many" Context : has
+Client *--> "many" Context : has
 
 interface Strategy {
     +execute()
 }
 
-Context *-up-> Strategy
+Context o-up-> Strategy
 
 package ConcreteStrategies {
     class StrategyA implements Strategy {

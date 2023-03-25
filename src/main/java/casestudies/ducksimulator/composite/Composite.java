@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-public class Composite <T> {
+public class Composite <T> implements Task<T> {
 	
 	private final List<T> objects;
 	
@@ -21,6 +21,7 @@ public class Composite <T> {
 		objects.remove(object);
 	}
 	
+	@Override
 	public void accept(Consumer<T> task) {
 		getObjects().forEach(task);
 	}
@@ -28,5 +29,5 @@ public class Composite <T> {
 	public Stream<T> getObjects() {
 		return objects.stream();
 	}
+	
 }
-

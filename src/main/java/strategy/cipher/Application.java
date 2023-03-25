@@ -1,8 +1,12 @@
 package strategy.cipher;
 
+import strategy.cipher.algorithms.Algorithm;
 import strategy.cipher.algorithms.Caesar;
 import strategy.cipher.algorithms.SimpleSubstitution;
 import strategy.cipher.algorithms.XOR;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 	

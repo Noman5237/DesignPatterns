@@ -1,9 +1,10 @@
 package util.cli;
 
-import jdk.jfr.Threshold;
 import lombok.Builder;
 import lombok.Data;
-import lombok.SneakyThrows;
+import util.cli.io.InputSource;
+import util.cli.io.OutputSource;
+import util.cli.io.SystemConsole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ public class Menu {
 	private final String help;
 	private final List<Option> options;
 	private final Input<Integer> input;
+	private final InputSource inputSource = SystemConsole.getInputSource();
+	private final OutputSource outputSource = SystemConsole.getOutputSource();
 	
 	@Data
 	@Builder
@@ -42,14 +45,16 @@ public class Menu {
 		}
 		
 		input = Input.<Integer>builder()
+		             .inputSource(inputSource)
+		             .outputSource(outputSource)
 		             .prompt(buildMenuPrompt())
 		             .help(buildHelpPrompt())
 		             .cast(Integer::parseInt)
 		             .validate(s -> s.matches("^[1-9]\\d*$"))
-		             .onError(s -> System.out.println("Invalid option: " + s))
+		             .onError(s -> this.outputSource.println("Invalid option: " + s))
 		             .maxAttempts(thisMaxAttempts)
 		             .condition(s -> s <= options.size(),
-		                        s -> System.out.println("Option must be less than " + options.size()))
+		                        s -> this.outputSource.println("Option must be less than " + options.size()))
 		             .build();
 	}
 	
